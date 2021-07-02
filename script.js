@@ -2,22 +2,27 @@
 
 const container = document.querySelector('#container');
 
-//Creating grid
-for(i = 1; i <= 16; i ++) {
-    for(j = 1; j <= 16; j++) {
-        const square = document.createElement('div');
-        square.classList.add('square');
 
-        //Placement
-        square.style.gridColumn = i;
-        square.style.gridRow = j;
 
-        square.addEventListener('mouseover', ()=> {
-            square.classList.add('filledSquare');
-        });
-        container.appendChild(square);
+function createGrid(size) {
+    for(i = 1; i <= size; i ++) {
+        for(j = 1; j <= size; j++) {
+            let square = document.createElement('div');
+            square.classList.add('square');
+    
+            //Placement
+            square.style.gridColumn = i;
+            square.style.gridRow = j;
+    
+            square.addEventListener('mouseover', ()=> {
+                square.classList.add('filledSquare');
+            });
+            container.appendChild(square);
+        }
     }
 }
+
+createGrid(16);
 
 const resetCanvasButton = document.querySelector('#resetButton');
 
@@ -34,10 +39,25 @@ resetCanvasButton.addEventListener('click', ()=> {
        e.classList.remove('filledSquare');
     });
 
-    for(i = 1; i <= canvasSize; i++) {
-        for (j = 1; j < canvasSize; j++) {
+    //Removing old squares
+    // for(i = 1; i <= 16; i++) {
+    //     for (j = 1; j < 16; j++) {
+    //         container.removeChild(container.lastChild);
+    //     }
+    // }
 
-
-        }
+    while(container.firstChild) {
+        container.removeChild(container.lastChild);
     }
+    
+
+
+    //Adjusting container-grid size
+    document.getElementById('container').style.gridTemplateRows = 'repeat(' + canvasSize + ', 1fr)';
+    document.getElementById('container').style.gridTemplateRows = '1';
+    document.getElementById('container').style.gridTemplateColumns = 'repeat(' + canvasSize + ', 1fr)';
+    document.getElementById('container').style.gridTemplateColumns = '1';
+
+    //Adding new squares
+    createGrid(canvasSize);
 });
