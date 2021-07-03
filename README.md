@@ -1,6 +1,6 @@
 # EtchASketch
 
-[Live Demo Here!]("https://braymuk.github.io/EtchASketch/")
+[Live Demo Here!](https://braymuk.github.io/EtchASketch/)
 
 This project is part of TheOdinProject 'Foundations' series.
 
